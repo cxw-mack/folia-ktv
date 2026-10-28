@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <!-- Local phone UI for the opt-in desktop KTV room. -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#101010">
+    <title>Folia KTV</title>
+    <link rel="stylesheet" href="/mobile.css">
+    <script src="/mobile.js" defer></script>
+</head>
+<body>
+    <main class="app">
+        <header class="brand"><span class="brand-mark">F</span><div><p>FOLIA</p><h1 id="phone-title">KTV 点歌</h1></div><span class="live"><i></i><span id="connection-label">HOME</span></span></header>
+        <section class="now panel" aria-live="polite">
+            <div class="eyebrow" id="now-label">正在播放</div>
+            <strong id="now-title">正在连接桌面播放器…</strong>
+            <span id="now-artist">请确保手机和电脑连接同一 Wi-Fi</span>
+            <div class="now-bottom"><span id="now-mode">原唱</span><span id="now-time">--:--</span></div>
+            <progress id="play-progress" class="progress" max="100" value="0" aria-label="播放进度"></progress>
+            <div class="transport" role="group" aria-label="播放控制">
+                <button id="previous-button" type="button" aria-label="上一首" title="上一首">⏮</button>
+                <button id="play-toggle" class="primary-transport" type="button" aria-label="播放" title="播放">▶</button>
+                <button id="next-button" type="button" aria-label="下一首" title="下一首">⏭</button>
+            </div>
+            <div class="ktv-controls">
+                <div class="mode-tabs" role="group" aria-label="人声模式">
+                    <button id="mode-original" type="button" aria-pressed="true">原唱播放</button>
+                    <button id="mode-instrumental" type="button" aria-pressed="false">伴奏播放</button>
+                </div>
+                <div class="auto-accompaniment">
+                    <span id="enable-label">自动生成当前歌曲伴奏</span>
+                    <button id="accompaniment-toggle" type="button" role="switch" aria-checked="false" aria-label="自动生成当前歌曲伴奏"><span></span></button>
+                </div>
+                <div class="accompaniment-status" aria-live="polite">
+                    <div><span id="accompaniment-status">伴奏生成未开启</span><span id="accompaniment-progress-label">0%</span></div>
+                    <progress id="accompaniment-progress" max="100" value="0" aria-label="伴奏生成进度"></progress>
+                    <div class="accompaniment-buffer"><span id="accompaniment-buffer-label">伴奏缓冲</span><span id="accompaniment-buffer">0:00</span></div>
+                </div>
+                <button id="retry-accompaniment" type="button" hidden>重新生成伴奏</button>
+                <p class="engine-hint" id="engine-hint"></p>
+            </div>
+        </section>
+        <section class="search panel">
+            <div class="section-heading"><div><div class="eyebrow">YOUR NEXT SONG</div><h2 id="search-title">搜索并点歌</h2></div><span class="provider" id="provider-label"></span></div>
+            <div class="source-tabs" role="group" aria-label="搜索来源"><button id="source-online" type="button" aria-pressed="true">在线平台</button><button id="source-local" type="button" aria-pressed="false">本地曲库</button></div>
+            <form id="search-form"><label class="search-box"><span aria-hidden="true">⌕</span><input id="query" maxlength="80" autocomplete="off" placeholder="歌名或歌手" required><button id="search-button" aria-label="搜索" type="submit">搜索</button></label></form>
+            <p class="hint" id="search-message">从 Folia 当前选择的平台或本地曲库搜索</p>
+            <div id="results" class="results"></div>
+        </section>
+        <section class="queue panel">
+            <div class="section-heading"><div><div class="eyebrow">UP NEXT</div><h2 id="queue-title">播放队列</h2></div><span class="count" id="queue-count">0</span></div>
+            <ol id="queue-list" class="queue-list"></ol>
+        </section>
+        <footer id="phone-footer">点歌发送到正在播放的 Folia 桌面端</footer>
+    </main>
+    <div id="toast" class="toast" role="status"></div>
+</body>
+</html>

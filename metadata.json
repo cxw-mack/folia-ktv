@@ -1,0 +1,5 @@
+{
+  "name": "Folia KTV",
+  "description": "A Folia-based home karaoke player with generated accompaniment, original-vocal switching, and local-network QR song requests.",
+  "requestFramePermissions": []
+}
